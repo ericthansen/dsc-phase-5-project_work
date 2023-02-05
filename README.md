@@ -70,9 +70,9 @@ This also performs with 90% precision (true positives / all predicted positives)
 LIME and Grad-CAM provide different visual insights and interpretability into CNN models.  
 
 This LIME augmented image highlights which features were most important in one sample image for its categorization.
-This "Real" image, classified correctly:
+This "Real" image, classified correctly:  
 ![Raw image visualization](https://github.com/ericthansen/dsc-phase-5-project_work/blob/main/images/lime_1.png)  
-has the following  highly important features.  Features in green suggest it is "real" and those in red are areas that appear more "fake."  
+has the following  highly important features.  Features in green suggest it is "real" and those in red are areas that appear more "fake."   
 
 ![Lime Features image visualization](https://github.com/ericthansen/dsc-phase-5-project_work/blob/main/images/lime_2.png)
 
