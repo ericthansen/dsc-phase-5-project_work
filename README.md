@@ -28,8 +28,8 @@ Business problems that such an investigation could illuminate include:
 To this end, our goal is to correctly classify deepfake and real images.
 
 ## Data Sources
-Original Kaggle Competition: [Deepfake Detection Challenge](https://www.kaggle.com/competitions/deepfake-detection-challenge/)
-Kaggle data source (extracted images): [Deepfake Faces](https://www.kaggle.com/datasets/dagnelies/deepfake-faces)
+Original Kaggle Competition: [Deepfake Detection Challenge](https://www.kaggle.com/competitions/deepfake-detection-challenge/)  
+Kaggle data source (extracted images): [Deepfake Faces](https://www.kaggle.com/datasets/dagnelies/deepfake-faces)  
 This zip file contains a metadata file with labels.  
 This includes 95,634 JPEG images, including 17% Real and 83% Fake images.  This is just over 16,293 real images.  
 In order to avoid class imbalance, and since 16K of each class is sufficient for good training, number of samples of each class is restricted to 16,000.
