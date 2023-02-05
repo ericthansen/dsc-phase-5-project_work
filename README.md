@@ -3,16 +3,16 @@ Flatiron Capstone project work
 # Deepfake Detection in Images
 
 ## Final Presentation Link, including visuals and discussion:  
-https://github.com/ericthansen/dsc-phase-5-project_work/blob/main/presentation_proj4.pdf
+https://github.com/ericthansen/dsc-phase-5-project_work/blob/main/presentation_proj5.pdf
 ## Data Source Link:  
-https://www.kaggle.com/code/luixmartins/starter-eda-steam-game-review/data
+[https://www.kaggle.com/datasets/ericth/deep-fake-detection-on-faces](https://www.kaggle.com/datasets/ericth/deep-fake-detection-on-faces)
 
 ## Instructions for navigation
 The root directory contains only final product files, including the Jupyter notebook containing Python code and a final presentation.  
 The images directory contains some visualizations that appear in the presentation.  
-The data directory contains the text reviews and ratings data.  
+There is no data directory - data is hosted on Kaggle (link above) and is too large to store on github.  Models are created and saved on google drive through course of running the notebook.
 
-## Motivation
+## Motivation and Goals
 Deepfakes (a portmanteau of "deep learning" and "fake") are an artificial image or video that replaces an existing entity with another entity's likeness.
 
 Creation of such media has some benign applications in art and academia, but in general, the capacity for misleading deepfakes is of great concern to a wide variety of stakeholders, including public figures, media producers and distribution platforms, and individual citizens, due to its potential to be used for harmful ends.
@@ -25,8 +25,11 @@ Business problems that such an investigation could illuminate include:
 - How to identify current deepfake manipulation 
 - What techniques and models work well on current deepfakes, informing what techniques may have best success on identifying future deepfake techniques  
 
+To this end, our goal is to correctly classify deepfake and real images.
+
 ## Data Sources
-Kaggle data source: [https://www.kaggle.com/competitions/deepfake-detection-challenge](DeepFake Detection Challenge)  
+Original Kaggle Competition: [Deepfake Detection Challenge](https://www.kaggle.com/competitions/deepfake-detection-challenge/)
+Kaggle data source (extracted images): [Deepfake Faces](https://www.kaggle.com/datasets/dagnelies/deepfake-faces)
 This zip file contains a metadata file with labels.  
 This includes 95,634 JPEG images, including 17% Real and 83% Fake images.  This is just over 16,293 real images.  
 In order to avoid class imbalance, and since 16K of each class is sufficient for good training, number of samples of each class is restricted to 16,000.
@@ -55,22 +58,35 @@ Several CNN models were created, including a manually-constructed and pretrained
 -  EfficientNetB0 - 80.6% 
 -  EfficientNetV2L - 60.6%
 
+For all pretrained models, each base model is loaded in and connected to desired output layer for classification.  Rough training is done on the new top layers.  Then base model is unfrozen and fine-tuning is performed at a lower learning rate.  
+
 The highest performing model, Xception, has the following confusion matrix on test data.
 
-(insert image)
+0 represents "real" image and 1 represents "fake".
+This also performs with 90% precision (true positives / all predicted positives) and 85% recall (true positives / actual positives).
+![Xception Confusion Matrix](https://github.com/ericthansen/dsc-phase-5-project_work/images/XcepCM.png)
 
 ### Visualizations
 LIME and Grad-CAM provide different visual insights and interpretability into CNN models.  
 
 This LIME augmented image highlights which features were most important in one sample image for its categorization.
-
-(insert)
+This "Real" image, classified correctly:
+![Raw image visualization](https://github.com/ericthansen/dsc-phase-5-project_work/images/lime_1.png)
+has the following  highly important features.  Features in green suggest it is "real" and those in red are areas that appear more "fake."
+![Lime Features image visualization](https://github.com/ericthansen/dsc-phase-5-project_work/images/lime_2.png)
 
 This Grad-CAM array shows different real and fake images and which areas on the image were most important to their categorization.
 
-(insert)
+For one sample fake image:
+![raw sample image visualization](https://github.com/ericthansen/dsc-phase-5-project_work/images/gc_1.png)  
+this heatmap shows areas in the image that appear "fake"
+![Grad-CAM image visualization](https://github.com/ericthansen/dsc-phase-5-project_work/images/gc_2.png)
 
-F
+This image was incorrectly classified as "real" - there is some "fake" heat appearing on the edge of the image:
+![Grad-CAM image visualization](https://github.com/ericthansen/dsc-phase-5-project_work/images/gc_3_actualFakePredReal.jpeg)
+
+This "real" image was correctly classified - it has very little "heat".
+![Grad-CAM image visualization](https://github.com/ericthansen/dsc-phase-5-project_work/images/gc6_realreal.jpeg)
 
 ## Further Improvements
-One of the desired future outcomes would to be to develop a "positivity/negativity" continuous rating to text reviews, with which to test consistency on non-binary ratings.  Also, improved performance on the deep learning models could be pursued, perhaps with additionally tuned or complex models or more data.
+The EfficientNetV2L performance should really be higher.  With more processing resources, one could refine the model fitting with more epochs.  
