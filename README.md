@@ -78,15 +78,15 @@ has the following  highly important features.  Features in green suggest it is "
 
 This Grad-CAM array shows different real and fake images and which areas on the image were most important to their categorization.
 
-For one sample fake image:
+For one sample fake image:  
 ![raw sample image visualization](https://github.com/ericthansen/dsc-phase-5-project_work/blob/main/images/gc_1.jpeg)  
-this heatmap shows areas in the image that appear "fake"
+this heatmap shows areas in the image that appear "fake"  
 ![Grad-CAM image visualization](https://github.com/ericthansen/dsc-phase-5-project_work/blob/main/images/gc_2.jpeg)
 
-This image was incorrectly classified as "real" - there is some "fake" heat appearing on the edge of the image:
+This image was incorrectly classified as "real" - there is some "fake" heat appearing on the edge of the image:  
 ![Grad-CAM image visualization](https://github.com/ericthansen/dsc-phase-5-project_work/blob/main/images/gc_3_actualFakePredReal.jpeg)
 
-This "real" image was correctly classified - it has very little "heat".
+This "real" image was correctly classified - it has very little "heat".  
 ![Grad-CAM image visualization](https://github.com/ericthansen/dsc-phase-5-project_work/blob/main/images/gc6_realreal.jpeg)
 
 ## Further Improvements
